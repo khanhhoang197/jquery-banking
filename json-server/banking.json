@@ -1,0 +1,20 @@
+{
+    "customer":[
+        {
+            "id": 1,
+            "name": "nva",
+            "email": "nva@co.cc",
+            "phone": 123456,
+            "address": "28 ntp"
+
+        },
+        {
+            "id": 2,
+            "name": "nvb",
+            "email": "nvb@co.cc",
+            "phone": 123456789,
+            "address": "28 ntp"
+
+        }
+    ]
+}

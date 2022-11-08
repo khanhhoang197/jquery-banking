@@ -36,8 +36,8 @@
                     <input type="email" class="form-control" id="emailCre">
                 </div>
             </fieldset>
-            <fieldset class="row g-3">
-                <div class="col-md-6 mb-3">
+            <!-- <fieldset class="row g-3"> -->
+                <!-- <div class="col-md-6 mb-3">
                     <label class="form-label"><b>Password</b></label>
                     <input type="password" class="form-control" id="passCre">
                 </div>
@@ -45,7 +45,7 @@
                     <label class="form-label"><b>Re-password</b></label>
                     <input type="password" class="form-control" id="rePassCre">
                 </div>
-            </fieldset>
+            </fieldset> -->
             <fieldset class="row g-3 ">
                 <div class="col-md-6 mb-3">
                     <label class="form-label"><b>Phone</b></label>
@@ -59,83 +59,89 @@
             </fieldset>
         </form>
         <div class="col-mt-3 mb-3">
-            <button class="btn btn-outline-primary" id="customerCre">
-                <i class="fa-solid fa-square-plus"></i> 
+            <button class="btn btn-outline-primary" id="btnCreateCustomer">
+                <i class="fa-solid fa-square-plus"></i>
                 Create Customers
             </button>
         </div>
         <div class="mt-3">
-            <table class="table table-hover">
+            <table class="table table-hover" id="tbCustomer">
                 <thead>
-                <tr style="background-color: darkorange; border-radius: 15px">
-                    <th>ID</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Balance</th>
-                    <th>Address</th>
-                    <th scope="col" colspan="5" style="text-align: center;">ACTION</th>
-                </tr>
+                    <tr style="background-color: darkorange; border-radius: 15px">
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Balance</th>
+                        <th>Address</th>
+                        <th scope="col" colspan="5" style="text-align: center;">ACTION</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <th:block th:each="item : ${customers}">
-                    <tr>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td>
-                        <td  class="text-end"></td>
-                        <td ></td>
-                        
-                        <td>
-                            <a class="btn btn-outline-secondary" title="edit" data-toggle="tooltip"
-                                data-bs-original-title="Edit">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a class="btn btn-outline-success" title="desposit" data-toggle="tooltip"
-                                data-bs-original-title="Edit">
-                                <i class="fa-regular fa-square-plus"></i></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a class="btn btn-outline-warning" title="withdraw" data-toggle="tooltip"
-                                data-bs-original-title="Edit">
-                                <i class="fa-regular fa-square-minus"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a class="btn btn-outline-primary" title="transfer" data-toggle="tooltip"
-                                data-bs-original-title="Edit">
-                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a  class="btn btn-outline-danger" title="delete" data-toggle="tooltip">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </th:block>
+            
                 </tbody>
             </table>
         </div>
     </div>
 </body>
+<script src="/assets/jquery/jquery-v3.6.1.min.js"></script>
 <script>
-         let icons = document.querySelectorAll('[data-toggle="tooltip"]');
-        icons.forEach((icon)=>{
-            new bootstrap.Tooltip(icon);
-        })
-       
-            function createCustomer(){
-                let customer = {
-                    fullName: ${'#fullName'}.val();
-                }
-            }
+    let icons = document.querySelectorAll('[data-toggle="tooltip"]');
+    icons.forEach((icon) => {
+        new bootstrap.Tooltip(icon);
+    })
 
-       
-        
+
+    let count = 1;
+    $("#btnCreateCustomer").on("click", () => {
+        let fullNameCre = $("#fullNameCre").val();
+        let emailCre = $("#emailCre").val();
+        let phoneCre = $("#phoneCre").val();
+        let addressCre = $("#addressCre").val();
+        let str = `
+        <tr>
+                        <td class="text-center">${count}</td>
+                        <td class="text-center">${fullNameCre}</td>
+                        <td class="text-center">${emailCre}</td>
+                        <td class="text-center">${phoneCre}</td>
+                        <td class="text-center">${addressCre}</td>
+                        <td class="text-end">0 đ</td>
+                        <td>
+                            <button data-id="" class="btn btn btn-outline-dark" title="Edit" data-toggle="tooltip"
+                                data-bs-original-title="Edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button data-id="" class="btn btn-outline-success" title="Deposit" data-toggle="tooltip"
+                                data-bs-original-title="Edit">
+                                <i class="fa-regular fa-square-plus"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button data-id="" class="btn btn-outline-warning" title="Withdraw" data-toggle="tooltip"
+                                data-bs-original-title="Edit">
+                                <i class="fa-regular fa-square-minus"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button data-id="" class="btn btn-outline-info" title="Transfer" data-toggle="tooltip"
+                                data-bs-original-title="Edit">
+                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button data-id="" class="btn btn-outline-danger" title="Suspended" data-toggle="tooltip"
+                                data-bs-original-title="Edit">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+        `;
+        $("#tbCustomer tbody").append(str);
+        count++;
+    })
+
 </script>
+
 </html>
