@@ -19,6 +19,49 @@
 </head>
 
 <body>
+
+    <!-- Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Customer Information</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form class="textform" method="post">
+                        <fieldset class="row g-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><b>Full name</b></label>
+                                <input type="text" class="form-control" id="fullNameEdit" name="fullNameCre">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><b>Email</b></label>
+                                <input type="email" class="form-control" id="emailEdit">
+                            </div>
+                        </fieldset>
+                        <fieldset class="row g-3 ">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><b>Phone</b></label>
+                                <input type="text" class="form-control" id="phoneEdit">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><b>Address</b></label>
+                                <input type="text" class="form-control" id="addressEdit">
+                            </div>
+                        </fieldset>
+                        </fieldset>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="tollbarlist">
             <div class="col-6 col-m-4 mt-4 mb-4">
@@ -36,8 +79,8 @@
                     <input type="email" class="form-control" id="emailCre">
                 </div>
             </fieldset>
-            <!-- <fieldset class="row g-3"> -->
-                <!-- <div class="col-md-6 mb-3">
+            <fieldset class="row g-3">
+                <div class="col-md-6 mb-3">
                     <label class="form-label"><b>Password</b></label>
                     <input type="password" class="form-control" id="passCre">
                 </div>
@@ -45,7 +88,7 @@
                     <label class="form-label"><b>Re-password</b></label>
                     <input type="password" class="form-control" id="rePassCre">
                 </div>
-            </fieldset> -->
+            </fieldset>
             <fieldset class="row g-3 ">
                 <div class="col-md-6 mb-3">
                     <label class="form-label"><b>Phone</b></label>
@@ -78,7 +121,7 @@
                     </tr>
                 </thead>
                 <tbody>
-            
+
                 </tbody>
             </table>
         </div>
@@ -90,6 +133,40 @@
     icons.forEach((icon) => {
         new bootstrap.Tooltip(icon);
     })
+    let customer = new Customer();
+
+    $(document).ready(function () {
+        loadCustomers();
+    });
+
+    function loadCustomers() {
+        $.ajax({
+            headers: {
+                accept: "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: "http://localhost:5697/customer?deleted=0"
+        })
+            .done((data) => {
+                let tbCustomer = $("#tbCustomer tbody");
+
+                data.forEach(item => {
+                    let str = renderCustomer(item);
+                    tbCustomer.prepend(str);
+                });
+
+                enableTooltip();
+
+                // removeHandleShowModal();
+
+                handleShowGroupModal();
+            })
+            .fail((jqXHR) => {
+                console.log(jqXHR);
+            })
+    }
+
 
 
     let count = 1;
@@ -108,7 +185,8 @@
                         <td class="text-end">0 đ</td>
                         <td>
                             <button data-id="" class="btn btn btn-outline-dark" title="Edit" data-toggle="tooltip"
-                                data-bs-original-title="Edit">
+                                data-bs-original-title="Edit"
+                                data-bs-toggle="modal" data-bs-target="#editModal">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                         </td>

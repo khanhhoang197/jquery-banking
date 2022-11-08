@@ -4,16 +4,66 @@
             "id": 1,
             "name": "nva",
             "email": "nva@co.cc",
-            "phone": 123456,
-            "address": "28 ntp"
+            "phone": 12345,
+            "address": "28 ntp",
+            "blance": 0,
+            "deleted": 0
 
         },
         {
             "id": 2,
             "name": "nvb",
             "email": "nvb@co.cc",
+            "phone": 123456,
+            "address": "28 ntp",
+            "blance": 0,
+            "deleted": 0
+
+        },
+        {
+            "id": 3,
+            "name": "nvc",
+            "email": "nvc@co.cc",
+            "phone": 1234567,
+            "address": "28 ntp",
+            "blance": 0,
+            "deleted": 0
+
+        }, {
+            "id": 4,
+            "name": "nvd",
+            "email": "nvd@co.cc",
+            "phone": 12345678,
+            "address": "28 ntp",
+            "blance": 0,
+            "deleted": 0
+
+        }, {
+            "id": 5,
+            "name": "nve",
+            "email": "nve@co.cc",
             "phone": 123456789,
-            "address": "28 ntp"
+            "address": "28 ntp",
+            "blance": 0,
+            "deleted": 1
+
+        }, {
+            "id": 6,
+            "name": "ntf",
+            "email": "ntf@co.cc",
+            "phone": 1234567890,
+            "address": "28 ntp",
+            "blance": 0,
+            "deleted": 1
+
+        }, {
+            "id": 7,
+            "name": "ntg",
+            "email": "ntg@co.cc",
+            "phone": 1234567898,
+            "address": "28 ntp",
+            "blance": 0,
+            "deleted": 0
 
         }
     ]
